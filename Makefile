@@ -12,7 +12,7 @@ SHELL=/bin/bash
 GOPATH=$(PWD)/vendor
 GOBUILDFLAGS=CGO_ENABLED=0
 
-all: vendor dockerbuild-dl
+all: dockerbuild-dl
 
 .PHONY: check
 check:
@@ -24,7 +24,7 @@ clean:
 distclean: clean
 	rm -rf vendor
 
-dockerbuild-dl: dockerbuild-dl.go
+dockerbuild-dl: vendor dockerbuild-dl.go
 	GOPATH=$(GOPATH) $(GOBUILDFLAGS) go build .
 
 fmt:
